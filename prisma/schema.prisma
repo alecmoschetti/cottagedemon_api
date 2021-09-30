@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
+}
+
+model Post {
+  id        String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  title     String
+  body      String
+  published Boolean   @default(false)
+  comments  Comment[]
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String    @db.ObjectId
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// postId must have @db.ObjectId to match up with Post's id type
+model Comment {
+  id        String   @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String   @db.ObjectId
+  comment   String
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id       String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  username String    @unique
+  email    String    @unique
+  password String
+  role     Role      @default(USER)
+  posts    Post[]
+  comments Comment[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}

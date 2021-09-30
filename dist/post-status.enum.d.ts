@@ -1,0 +1,5 @@
+export declare enum PostStatus {
+    UNPUBLISHED = "UNPUBLISHED",
+    READY_TO_PUBLISH = "READY_TO_PUBLISH",
+    PUBLISHED = "PUBLISHED"
+}
