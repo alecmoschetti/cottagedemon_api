@@ -60,6 +60,10 @@ let PostService = class PostService {
     async createPost(data) {
         return this.prisma.post.create({ data });
     }
+    async editPost(params) {
+        const { where, data } = params;
+        return this.prisma.post.update({ where, data });
+    }
     async publishPost(params) {
         const { where, data } = params;
         return this.prisma.post.update({

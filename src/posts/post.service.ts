@@ -63,6 +63,14 @@ export class PostService {
     return this.prisma.post.create({ data });
   }
 
+  async editPost(params: {
+    where: Prisma.PostWhereUniqueInput;
+    data: Prisma.PostUpdateInput;
+  }): Promise<Post> {
+    const { where, data } = params;
+    return this.prisma.post.update({ where, data });
+  }
+
   async publishPost(params: {
     where: Prisma.PostWhereUniqueInput;
     data: Prisma.PostUpdateInput;

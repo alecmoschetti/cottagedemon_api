@@ -107,6 +107,20 @@ export class AppController {
   }
 
   @UseGuards(AuthGuard(), RolesGuard)
+  @Patch('admin/posts/:id')
+  @Roles(Role.ADMIN)
+  async editPost(
+    @Param('id') id: string,
+    @Body() postData: { title: string; body: string; published?: boolean },
+  ): Promise<PostModel> {
+    const { title, body, published } = postData;
+    return this.postService.editPost({
+      where: { id },
+      data: { title, body, published },
+    });
+  }
+
+  @UseGuards(AuthGuard(), RolesGuard)
   @Patch('admin/posts/:id/publish')
   @Roles(Role.ADMIN)
   async publishPost(@Param('id') id: string): Promise<PostModel> {

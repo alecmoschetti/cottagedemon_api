@@ -12,6 +12,10 @@ export declare class PostService {
         where?: Prisma.PostWhereInput;
     }): Promise<Post[]>;
     createPost(data: Prisma.PostCreateInput): Promise<Post>;
+    editPost(params: {
+        where: Prisma.PostWhereUniqueInput;
+        data: Prisma.PostUpdateInput;
+    }): Promise<Post>;
     publishPost(params: {
         where: Prisma.PostWhereUniqueInput;
         data: Prisma.PostUpdateInput;

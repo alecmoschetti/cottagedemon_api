@@ -32,6 +32,11 @@ export declare class AppController {
         body: string;
         published?: boolean;
     }, user: UserModel): Promise<PostModel>;
+    editPost(id: string, postData: {
+        title: string;
+        body: string;
+        published?: boolean;
+    }): Promise<PostModel>;
     publishPost(id: string): Promise<PostModel>;
     unpublishPost(id: string): Promise<void>;
     deletePost(id: string): Promise<void>;

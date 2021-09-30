@@ -62,6 +62,13 @@ let AppController = class AppController {
             user: { connect: { id } },
         });
     }
+    async editPost(id, postData) {
+        const { title, body, published } = postData;
+        return this.postService.editPost({
+            where: { id },
+            data: { title, body, published },
+        });
+    }
     async publishPost(id) {
         return this.postService.publishPost({
             where: { id },
@@ -191,6 +198,16 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "createPost", null);
+__decorate([
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)(), roles_guard_1.RolesGuard),
+    (0, common_1.Patch)('admin/posts/:id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "editPost", null);
 __decorate([
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)(), roles_guard_1.RolesGuard),
     (0, common_1.Patch)('admin/posts/:id/publish'),
