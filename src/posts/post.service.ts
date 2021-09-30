@@ -74,10 +74,29 @@ export class PostService {
     });
   }
 
+  async unpublishPost(params: {
+    where: Prisma.PostWhereUniqueInput;
+    data: Prisma.PostUpdateInput;
+  }): Promise<void> {
+    const { where, data } = params;
+    const result = await this.prisma.post.update({
+      where,
+      data,
+    });
+    if (!result) {
+      throw new NotFoundException(
+        `Post with ID ${where.id} could not be found`,
+      );
+    }
+    this.logger.log(`post with id ${where.id} sucessfully unpublished`);
+  }
+
   async deletePost(where: Prisma.PostWhereUniqueInput): Promise<void> {
     const result = await this.prisma.post.delete({ where });
     if (!result) {
-      throw new NotFoundException(`Post with ID ${where.id} does not exist`);
+      throw new NotFoundException(
+        `Post with ID ${where.id} could not be found`,
+      );
     }
   }
 }

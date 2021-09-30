@@ -67,10 +67,21 @@ let PostService = class PostService {
             data,
         });
     }
+    async unpublishPost(params) {
+        const { where, data } = params;
+        const result = await this.prisma.post.update({
+            where,
+            data,
+        });
+        if (!result) {
+            throw new common_1.NotFoundException(`Post with ID ${where.id} could not be found`);
+        }
+        this.logger.log(`post with id ${where.id} sucessfully unpublished`);
+    }
     async deletePost(where) {
         const result = await this.prisma.post.delete({ where });
         if (!result) {
-            throw new common_1.NotFoundException(`Post with ID ${where.id} does not exist`);
+            throw new common_1.NotFoundException(`Post with ID ${where.id} could not be found`);
         }
     }
 };

@@ -16,5 +16,9 @@ export declare class PostService {
         where: Prisma.PostWhereUniqueInput;
         data: Prisma.PostUpdateInput;
     }): Promise<Post>;
+    unpublishPost(params: {
+        where: Prisma.PostWhereUniqueInput;
+        data: Prisma.PostUpdateInput;
+    }): Promise<void>;
     deletePost(where: Prisma.PostWhereUniqueInput): Promise<void>;
 }

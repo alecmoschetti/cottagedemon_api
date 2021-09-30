@@ -117,6 +117,16 @@ export class AppController {
   }
 
   @UseGuards(AuthGuard(), RolesGuard)
+  @Patch('admin/posts/:id/unpublish')
+  @Roles(Role.ADMIN)
+  async unpublishPost(@Param('id') id: string): Promise<void> {
+    return this.postService.unpublishPost({
+      where: { id },
+      data: { published: false },
+    });
+  }
+
+  @UseGuards(AuthGuard(), RolesGuard)
   @Delete('admin/posts/:id')
   @Roles(Role.ADMIN)
   async deletePost(@Param('id') id: string): Promise<void> {

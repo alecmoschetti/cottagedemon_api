@@ -68,6 +68,12 @@ let AppController = class AppController {
             data: { published: true },
         });
     }
+    async unpublishPost(id) {
+        return this.postService.unpublishPost({
+            where: { id },
+            data: { published: false },
+        });
+    }
     async deletePost(id) {
         return this.postService.deletePost({ id });
     }
@@ -194,6 +200,15 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "publishPost", null);
+__decorate([
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)(), roles_guard_1.RolesGuard),
+    (0, common_1.Patch)('admin/posts/:id/unpublish'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AppController.prototype, "unpublishPost", null);
 __decorate([
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)(), roles_guard_1.RolesGuard),
     (0, common_1.Delete)('admin/posts/:id'),

@@ -33,6 +33,7 @@ export declare class AppController {
         published?: boolean;
     }, user: UserModel): Promise<PostModel>;
     publishPost(id: string): Promise<PostModel>;
+    unpublishPost(id: string): Promise<void>;
     deletePost(id: string): Promise<void>;
     getPublishedPosts(): Promise<PostModel[]>;
     getFilteredPosts(query: any): Promise<PostModel[]>;
