@@ -4,10 +4,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaService } from './prisma.service';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { JwtStrategy } from './jwt.strategy';
-import { UserService } from './user.service';
-import { PostService } from './post.service';
-import { CommentService } from './comment.service';
+import { JwtStrategy } from './auth/jwt.strategy';
+import { UserService } from './auth/user.service';
+import { PostService } from './posts/post.service';
+import { CommentService } from './comments/comment.service';
 
 @Module({
   imports: [

@@ -13,10 +13,10 @@ const config_1 = require("@nestjs/config");
 const prisma_service_1 = require("./prisma.service");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
-const jwt_strategy_1 = require("./jwt.strategy");
-const user_service_1 = require("./user.service");
-const post_service_1 = require("./post.service");
-const comment_service_1 = require("./comment.service");
+const jwt_strategy_1 = require("./auth/jwt.strategy");
+const user_service_1 = require("./auth/user.service");
+const post_service_1 = require("./posts/post.service");
+const comment_service_1 = require("./comments/comment.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([

@@ -1,12 +1,11 @@
 import { Post as PostModel, User as UserModel, Comment as CommentModel } from '@prisma/client';
-import { PostService } from './post.service';
-import { UserService } from './user.service';
-import { CommentService } from './comment.service';
+import { PostService } from './posts/post.service';
+import { UserService } from './auth/user.service';
+import { CommentService } from './comments/comment.service';
 export declare class AppController {
     private readonly userService;
     private readonly postService;
     private readonly commentService;
-    private logger;
     constructor(userService: UserService, postService: PostService, commentService: CommentService);
     signupUser(userData: {
         username: string;

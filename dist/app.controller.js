@@ -14,20 +14,19 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
-const post_service_1 = require("./post.service");
-const user_service_1 = require("./user.service");
+const post_service_1 = require("./posts/post.service");
+const user_service_1 = require("./auth/user.service");
 const passport_1 = require("@nestjs/passport");
-const get_user_decorator_1 = require("./get-user.decorator");
-const comment_service_1 = require("./comment.service");
-const roles_decorator_1 = require("./roles.decorator");
-const role_enum_1 = require("./role.enum");
-const roles_guard_1 = require("./roles.guard");
+const get_user_decorator_1 = require("./auth/get-user.decorator");
+const comment_service_1 = require("./comments/comment.service");
+const roles_decorator_1 = require("./auth/roles.decorator");
+const role_enum_1 = require("./auth/role.enum");
+const roles_guard_1 = require("./auth/roles.guard");
 let AppController = class AppController {
     constructor(userService, postService, commentService) {
         this.userService = userService;
         this.postService = postService;
         this.commentService = commentService;
-        this.logger = new common_1.Logger('AppController');
     }
     async signupUser(userData) {
         return this.userService.createUser(userData);

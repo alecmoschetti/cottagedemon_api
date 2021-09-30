@@ -8,7 +8,6 @@ import {
   Controller,
   Delete,
   Get,
-  Logger,
   Param,
   Patch,
   Post,
@@ -16,18 +15,17 @@ import {
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
-import { PostService } from './post.service';
-import { UserService } from './user.service';
+import { PostService } from './posts/post.service';
+import { UserService } from './auth/user.service';
 import { AuthGuard } from '@nestjs/passport';
-import { GetUser } from './get-user.decorator';
-import { CommentService } from './comment.service';
-import { Roles } from './roles.decorator';
-import { Role } from './role.enum';
-import { RolesGuard } from './roles.guard';
+import { GetUser } from './auth/get-user.decorator';
+import { CommentService } from './comments/comment.service';
+import { Roles } from './auth/roles.decorator';
+import { Role } from './auth/role.enum';
+import { RolesGuard } from './auth/roles.guard';
 
 @Controller('api/v1')
 export class AppController {
-  private logger = new Logger('AppController');
   constructor(
     private readonly userService: UserService,
     private readonly postService: PostService,
