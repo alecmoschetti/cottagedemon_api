@@ -19,7 +19,7 @@ import { CommentService } from './comments/comment.service';
       inject: [ConfigService],
       useFactory: async () => ({
         secret: process.env.JWT_SECRET,
-        signOptions: { expiresIn: 360000 },
+        signOptions: { expiresIn: 10800000 },
       }),
     }),
   ],
