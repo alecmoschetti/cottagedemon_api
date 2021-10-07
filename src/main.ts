@@ -11,7 +11,10 @@ async function bootstrap() {
   const logger = new Logger();
 
   const app = await NestFactory.create(AppModule);
-  app.enableCors({ origin: process.env.CMS_URL });
+  app.enableCors({
+    origin: process.env.CMS_URL,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
   app.use(helmet());
   app.use(compression());
   app.useGlobalPipes(new ValidationPipe());
