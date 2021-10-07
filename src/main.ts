@@ -10,12 +10,12 @@ import * as compression from 'compression';
 async function bootstrap() {
   const logger = new Logger();
 
-  const app = await NestFactory.create(AppModule);
-  app.enableCors({
+  const corsOptions = {
     origin: process.env.CMS_URL,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  });
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  };
+
+  const app = await NestFactory.create(AppModule, { cors: corsOptions });
   app.use(helmet());
   app.use(compression());
   app.useGlobalPipes(new ValidationPipe());
