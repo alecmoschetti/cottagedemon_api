@@ -21,9 +21,7 @@ let UserService = class UserService {
         this.logger = new common_1.Logger();
     }
     async login(userData) {
-        this.logger.debug(userData);
         const { username, password } = userData;
-        this.logger.debug(username, password);
         const user = await this.prisma.user.findUnique({ where: { username } });
         if (user && (await bcrypt.compare(password, user.password))) {
             const payload = { username };

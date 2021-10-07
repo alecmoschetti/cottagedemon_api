@@ -33,9 +33,6 @@ let AppController = class AppController {
         return this.userService.createUser(userData);
     }
     async loginUser(userData) {
-        this.logger.log(userData);
-        this.logger.log(JSON.stringify(userData));
-        this.logger.log(JSON.parse(JSON.stringify(userData)));
         return this.userService.login(userData);
     }
     async deleteUser(user) {

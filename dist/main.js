@@ -10,8 +10,11 @@ const helmet = require("helmet");
 const compression = require("compression");
 async function bootstrap() {
     const logger = new common_1.Logger();
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    app.enableCors({ origin: process.env.CMS_URL });
+    const corsOptions = {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    };
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: corsOptions });
     app.use(helmet());
     app.use(compression());
     app.useGlobalPipes(new common_1.ValidationPipe());

@@ -11,7 +11,7 @@ async function bootstrap() {
   const logger = new Logger();
 
   const corsOptions = {
-    origin: process.env.CMS_URL,
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   };
 

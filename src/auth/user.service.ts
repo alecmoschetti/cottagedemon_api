@@ -25,9 +25,7 @@ export class UserService {
     username: string;
     password: string;
   }): Promise<{ accessToken: string }> {
-    this.logger.debug(userData);
     const { username, password } = userData;
-    this.logger.debug(username, password);
     const user = await this.prisma.user.findUnique({ where: { username } });
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { username };

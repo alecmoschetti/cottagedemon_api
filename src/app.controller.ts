@@ -50,9 +50,6 @@ export class AppController {
   async loginUser(
     @Body() userData: { username: string; password: string },
   ): Promise<{ accessToken: string }> {
-    this.logger.log(userData);
-    this.logger.log(JSON.stringify(userData));
-    this.logger.log(JSON.parse(JSON.stringify(userData)));
     return this.userService.login(userData);
   }
 
