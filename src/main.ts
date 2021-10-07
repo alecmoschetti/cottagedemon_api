@@ -14,6 +14,7 @@ async function bootstrap() {
   app.enableCors({
     origin: process.env.CMS_URL,
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   });
   app.use(helmet());
   app.use(compression());
