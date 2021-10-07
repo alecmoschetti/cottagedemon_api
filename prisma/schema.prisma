@@ -43,6 +43,7 @@ model User {
   role     Role      @default(USER)
   posts    Post[]
   comments Comment[]
+  token    String    @unique @default(cuid())
 }
 
 enum Role {

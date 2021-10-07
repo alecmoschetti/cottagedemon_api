@@ -8,6 +8,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   Patch,
   Post,
@@ -26,6 +27,7 @@ import { RolesGuard } from './auth/roles.guard';
 
 @Controller('api/v1')
 export class AppController {
+  private logger = new Logger('AppController');
   constructor(
     private readonly userService: UserService,
     private readonly postService: PostService,
@@ -48,6 +50,9 @@ export class AppController {
   async loginUser(
     @Body() userData: { username: string; password: string },
   ): Promise<{ accessToken: string }> {
+    this.logger.log(userData);
+    this.logger.log(JSON.stringify(userData));
+    this.logger.log(JSON.parse(JSON.stringify(userData)));
     return this.userService.login(userData);
   }
 

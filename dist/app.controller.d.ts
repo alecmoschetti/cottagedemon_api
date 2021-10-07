@@ -6,6 +6,7 @@ export declare class AppController {
     private readonly userService;
     private readonly postService;
     private readonly commentService;
+    private logger;
     constructor(userService: UserService, postService: PostService, commentService: CommentService);
     signupUser(userData: {
         username: string;

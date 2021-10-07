@@ -29,7 +29,7 @@ AppModule = __decorate([
                 inject: [config_1.ConfigService],
                 useFactory: async () => ({
                     secret: process.env.JWT_SECRET,
-                    signOptions: { expiresIn: 360000 },
+                    signOptions: { expiresIn: 10800000 },
                 }),
             }),
         ],

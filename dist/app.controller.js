@@ -27,11 +27,15 @@ let AppController = class AppController {
         this.userService = userService;
         this.postService = postService;
         this.commentService = commentService;
+        this.logger = new common_1.Logger('AppController');
     }
     async signupUser(userData) {
         return this.userService.createUser(userData);
     }
     async loginUser(userData) {
+        this.logger.log(userData);
+        this.logger.log(JSON.stringify(userData));
+        this.logger.log(JSON.parse(JSON.stringify(userData)));
         return this.userService.login(userData);
     }
     async deleteUser(user) {
