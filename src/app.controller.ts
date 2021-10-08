@@ -13,6 +13,7 @@ import {
   Patch,
   Post,
   Query,
+  Res,
   UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
@@ -80,8 +81,9 @@ export class AppController {
   @UseGuards(AuthGuard(), RolesGuard)
   @Get('admin/posts')
   @Roles(Role.ADMIN)
-  async getAllPosts(): Promise<PostModel[]> {
-    return this.postService.posts({});
+  async getAllPosts(@Res() res) {
+    const posts = await this.postService.posts({});
+    return res.json(posts);
   }
 
   @UseGuards(AuthGuard(), RolesGuard)
